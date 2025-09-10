@@ -31,7 +31,6 @@ export function useAgentSession() {
 								'https://odoo-mcp-server.vercel.app/api/odoo-mcp/mcp',
 						}),
 					],
-					voice:""
 				});
 
 				const newSession = new RealtimeSession(agent);

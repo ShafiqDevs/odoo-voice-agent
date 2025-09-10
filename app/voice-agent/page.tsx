@@ -2,9 +2,7 @@
 import { useAgentSession } from '@/utils/hooks/useSession';
 import React, { useEffect, useState } from 'react';
 
-type Props = {};
-
-export default function VoiceAgentPage({}: Props) {
+export default function VoiceAgentPage() {
 	const { session: agentSession, loading, error } = useAgentSession();
 	const [userInput, setUserInput] = useState<string | null>(null);
 	const [isUserMuted, setIsUserMuted] = useState<boolean>(false);
