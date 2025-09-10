@@ -20,8 +20,10 @@ export function useAgentSession() {
 			try {
 				const agent = new RealtimeAgent({
 					name: 'Bob',
-					instructions:
-						'You are a helpful assistant. who speaks in english',
+					instructions: `You are a helpful assistant. who speaks only in english
+						if spoken to in any other language, say EXACTLY this: "I only speak english, can we continue?"
+						###
+						-Before you use any tool or do any task, give the user a friendly notification like "I'm on it", "easy enough, one sec" or "I'm on it"  (use variations of these also)`,
 					tools: [
 						hostedMcpTool({
 							serverLabel: 'oodo-mcp',
@@ -29,13 +31,13 @@ export function useAgentSession() {
 								'https://odoo-mcp-server.vercel.app/api/odoo-mcp/mcp',
 						}),
 					],
+					voice:""
 				});
 
 				const newSession = new RealtimeSession(agent);
 				const apiKey = await getEphemeralKey();
 				await newSession.connect({ apiKey });
 
-				
 				if (isMounted) {
 					setSession(newSession);
 					setLoading(false);
